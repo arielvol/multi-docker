@@ -4,20 +4,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t arielvolnicher/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t arielvol2/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true arielvolnicher/react-test npm test
+  - docker run -e CI=true arielvol2/react-test npm test
 
 after_success:
-  - docker build -t arielvolnicher/multi-client ./client
-  - docker build -t arielvolnicher/multi-nginx ./nginx
-  - docker build -t arielvolnicher/multi-server ./server
-  - docker build -t arielvolnicher/multi-worker ./worker
+  - docker build -t arielvol2/multi-client ./client
+  - docker build -t arielvol2/multi-nginx ./nginx
+  - docker build -t arielvol2/multi-server ./server
+  - docker build -t arielvol2/multi-worker ./worker
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push arielvolnicher/multi-client
-  - docker push arielvolnicher/multi-nginx
-  - docker push arielvolnicher/multi-server
-  - docker push arielvolnicher/multi-worker
+  - docker push arielvol2/multi-client
+  - docker push arielvol2/multi-nginx
+  - docker push arielvol2/multi-server
+  - docker push arielvol2/multi-worker
 

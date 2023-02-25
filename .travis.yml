@@ -15,15 +15,9 @@ after_success:
   - docker build -t arielvolnicher/multi-server ./server
   - docker build -t arielvolnicher/multi-worker ./worker
 
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push arielvolnicher/multi-client
+  - docker push arielvolnicher/multi-nginx
+  - docker push arielvolnicher/multi-server
+  - docker push arielvolnicher/multi-worker
 
-deploy:
-  provider: elasticbeanstalk
-  region: "us-east-2"
-  app: "docker"
-  env: "docker-env"
-  bucket_name: "elasticbeanstalk-us-east-2-185154748506"
-  bucket_path: "docker"
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: "$AWS_SECRET_KEY"
-  on:
-    branch: main

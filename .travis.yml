@@ -21,3 +21,14 @@ after_success:
   - docker push arielvol2/multi-server
   - docker push arielvol2/multi-worker
 
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'multi-docker'
+  env: 'MultiDocker-env-1'
+  bucket_name: 'elasticbeanstalk-us-east-2-185154748506'
+  bucket_path: 'docker-multi'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

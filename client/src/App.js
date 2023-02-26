@@ -13,6 +13,7 @@ function App() {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
+          <h1>Fib Calculator</h1>
           <Link to="/">Home</Link>
           <Link to="/otherpage">Other Page</Link>
 
